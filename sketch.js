@@ -3,18 +3,16 @@ let i = 0;
 let sorting = false;
 let numValuesSlider, algorithmSelect, startButton, subarrays, stack;
 
+
 function setup() {
-  let canvas = createCanvas(400, 400);
+  let canvas = createCanvas(800, 500);
   canvas.parent('canvas-container');
   frameRate(10);
-  
-  // Get UI elements from HTML
+ 
   numValuesSlider = select('#num-values');
   algorithmSelect = select('#algorithm');
   startButton = select('#start-button');
   
-  
-   // Initialize array
   resetArray();
   
   startButton.mousePressed(startSorting);
@@ -49,11 +47,13 @@ function drawBars() {
   }
 }
 
+
 function resetArray() {
   arr = Array(parseInt(numValuesSlider.value())).fill().map(() => floor(random(20)) + 1);
   i = 0;
   sorting = false;
 }
+
 
 function startSorting() {
   resetArray();
@@ -80,7 +80,6 @@ function bubbleSortStep() {
 }
 
 
-
 function insertionSortStep() {
   if (i < arr.length) {
     let key = arr[i];
@@ -97,8 +96,14 @@ function insertionSortStep() {
   }
 }
 
+/* 
 
+this function is different from the other ones because of how merge sort works,
+because steps in merge sort are sorting steps for sub arrays of the original array and not
+modifications of the original array itself ( not until the end ), hence the need for 
+pdateMainArray() to keep updating the original array for the animation
 
+*/
 function mergeSortStep() {
   if (!subarrays) {
     subarrays = arr.map(num => [num]);
@@ -113,7 +118,6 @@ function mergeSortStep() {
     merged = [...merged, ...left, ...right];
     subarrays.push(merged);
     
-    // Update the main array to reflect the current state
     updateMainArray();
   } else {
     arr = subarrays[0];
