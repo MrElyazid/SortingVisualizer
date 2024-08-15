@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Sorting Algorithms Visualizer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
@@ -42,13 +42,20 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,123,255,0.3);
         }
+
+
         #canvas-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-color: #ffffff;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             padding: 20px;
             margin-top: 20px;
+            overflow: hidden; /* Ensure no overflow on small screens */
         }
+
     </style>
 </head>
 <body>

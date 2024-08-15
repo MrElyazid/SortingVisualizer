@@ -1,12 +1,27 @@
 let arr = [];
 let i = 0;
 let sorting = false;
-let numValuesSlider, algorithmSelect, startButton, subarrays, stack, RED, GREEN, BLUE;
+let numValuesSlider, algorithmSelect, startButton, subarrays, stack, GREEN, BLUE;
 
 
 function setup() {
-  let canvas = createCanvas(800, 460);
+ 
+// for large screens the canvas dimensions are 800*460, for small screens 0.9*windowWidth x 0.6*windowHeight
+
+  let canvasWidth, canvasHeight;
+
+    if (windowWidth >= 800) {  
+        canvasWidth = 800;
+        canvasHeight = 460;
+    } else {  
+        canvasWidth = windowWidth * 0.9;
+        canvasHeight = windowHeight * 0.6;
+    }
+
+  let canvas = createCanvas(canvasWidth, canvasHeight)
   canvas.parent('canvas-container');
+
+  // the number of times we will execute the draw function per second
   frameRate(10);
  
   numValuesSlider = select('#num-values');
@@ -18,7 +33,15 @@ function setup() {
   startButton.mousePressed(startSorting);
   BLUE = color(50, 113, 168)
   GREEN = color(50, 168, 66)
-  RED = color(245, 93, 93)
+}
+
+// this is needed in case the user resizes the window
+function windowResized() {
+  if (windowWidth >= 800) {
+    resizeCanvas(800, 460);
+} else {
+    resizeCanvas(windowWidth * 0.9, windowHeight * 0.6);
+}
 }
 
 
