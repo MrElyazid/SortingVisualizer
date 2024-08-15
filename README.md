@@ -1,12 +1,9 @@
-# Try it out [Link to visualizer](https://mrelyazid.github.io/SortingVisualizer/)
-
-
+# Try it out [Here](https://mrelyazid.github.io/SortingVisualizer/).
 
 ## SortingVisualizer
-Visualizing famous sorting algorithms with p5.js, currently there is four algorithms : Bubble sort, Quick sort, Insertion sort and Merge sort
+Visualizing famous sorting algorithms with p5.js, currently there are four algorithms: Bubble sort, Quick sort, Insertion sort, and Merge sort.
 
-
-## Screenshots :
-[pic1](./readmeassets/screen1.png)
-[pic1](./readmeassets/screen2.png)
-[pic1](./readmeassets/screen3.png)
+## Screenshots:
+![pic1](./readmeassets/screen1.png)
+![pic2](./readmeassets/screen2.png)
+![pic3](./readmeassets/screen3.png)
