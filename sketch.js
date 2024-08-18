@@ -6,7 +6,7 @@ let numValuesSlider, algorithmSelect, startButton, subarrays, stack, GREEN, BLUE
 
 function setup() {
  
-// for large screens the canvas dimensions are 800*460, for small screens 0.9*windowWidth x 0.6*windowHeight
+// for large screens the canvas dimensions are 800*460, for small screens 0.8*windowWidth x 0.5*windowHeight
 
   let canvasWidth, canvasHeight;
 
@@ -14,8 +14,8 @@ function setup() {
         canvasWidth = 800;
         canvasHeight = 460;
     } else {  
-        canvasWidth = windowWidth * 0.9;
-        canvasHeight = windowHeight * 0.6;
+        canvasWidth = windowWidth * 0.8;
+        canvasHeight = windowHeight * 0.5;
     }
 
   let canvas = createCanvas(canvasWidth, canvasHeight)
@@ -25,22 +25,41 @@ function setup() {
   frameRate(10);
  
   numValuesSlider = select('#num-values');
+  numValuesSlider.input(updateArrayDraw);
   algorithmSelect = select('#algorithm');
   startButton = select('#start-button');
   
-  resetArray();
+  
   
   startButton.mousePressed(startSorting);
-  BLUE = color(50, 113, 168)
-  GREEN = color(50, 168, 66)
+  BLUE = color('#6cafe6')
+  GREEN = color('#5bcfa8')
+
+  updateArrayDraw();
 }
+
+
+
+function updateArrayDraw() {
+  let numValues = parseInt(numValuesSlider.value());  
+  arr = Array(numValues).fill().map(() => floor(random(20)) + 1);
+  colors = Array(arr.length).fill(color(100));
+  document.getElementById('array-size-display').textContent = numValues;
+
+  background(220);
+  drawBars();
+}
+
+
+
+
 
 // this is needed in case the user resizes the window
 function windowResized() {
   if (windowWidth >= 800) {
     resizeCanvas(800, 460);
 } else {
-    resizeCanvas(windowWidth * 0.9, windowHeight * 0.6);
+    resizeCanvas(windowWidth * 0.8, windowHeight * 0.5);
 }
 }
 
@@ -66,7 +85,7 @@ function draw() {
 function drawBars() {
   const barWidth = width / arr.length;
   for (let i = 0; i < arr.length; i++) {
-    const barHeight = arr[i] * (height / 20);
+    const barHeight = arr[i] * (height / 30);
     fill(colors[i]);
     rect(i * barWidth, height - barHeight, barWidth, barHeight);
   }
@@ -74,7 +93,7 @@ function drawBars() {
 
 
 function resetArray() {
-  arr = Array(parseInt(numValuesSlider.value())).fill().map(() => floor(random(20)) + 1);
+  arr = Array(parseInt(numValuesSlider.value())).fill().map(() => floor(random(30)) + 1);
   colors = Array(arr.length).fill(color(100)); 
   i = 0;
   sorting = false;
@@ -138,12 +157,10 @@ function insertionSortStep() {
 
 
 /* 
-
 this function is different from the other ones because of how merge sort works,
 because steps in merge sort are sorting steps for sub arrays of the original array and not
 modifications of the original array itself ( not until the end ), hence the need for 
 pdateMainArray() to keep updating the original array for the animation
-
 */
 
 
@@ -242,6 +259,6 @@ function partition(low, high) {
   
   [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
   colors[i + 1] = BLUE; 
-  
+    
   return i + 1;
 }
