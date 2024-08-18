@@ -1,3 +1,12 @@
+
+/* 
+Stuff to fix later : 
+*/
+
+
+
+/* coloring rule : if the value is a*/
+
 let arr = [];
 let i = 0;
 let sorting = false;
@@ -15,7 +24,7 @@ function setup() {
         canvasHeight = 460;
     } else {  
         canvasWidth = windowWidth * 0.8;
-        canvasHeight = windowHeight * 0.5;
+        canvasHeight = windowHeight * 0.4;
     }
 
   let canvas = createCanvas(canvasWidth, canvasHeight)
@@ -32,12 +41,11 @@ function setup() {
   
   
   startButton.mousePressed(startSorting);
-  BLUE = color('#6cafe6')
-  GREEN = color('#5bcfa8')
+  BLUE = color('#2f76cc')
+  GREEN = color('#50ad8e')
 
   updateArrayDraw();
 }
-
 
 
 function updateArrayDraw() {
@@ -49,8 +57,6 @@ function updateArrayDraw() {
   background(220);
   drawBars();
 }
-
-
 
 
 
@@ -80,6 +86,7 @@ function draw() {
     }
   }
 }
+
 
 
 function drawBars() {
