@@ -1,11 +1,6 @@
 
-/* 
-Stuff to fix later : 
-*/
 
 
-
-/* coloring rule : if the value is a*/
 
 let arr = [];
 let i = 0;
@@ -44,13 +39,15 @@ function setup() {
   BLUE = color('#2f76cc')
   GREEN = color('#50ad8e')
 
+
+  // this function draws the bars when the user changes the range input
   updateArrayDraw();
 }
 
 
 function updateArrayDraw() {
   let numValues = parseInt(numValuesSlider.value());  
-  arr = Array(numValues).fill().map(() => floor(random(20)) + 1);
+  arr = Array(numValues).fill().map(() => floor(random(30)) + 1);
   colors = Array(arr.length).fill(color(100));
   document.getElementById('array-size-display').textContent = numValues;
 
@@ -75,6 +72,10 @@ function draw() {
   drawBars();
   
   if (sorting) {
+
+    // this disables the range input if the animation is running so the user cant change the array
+    numValuesSlider.elt.disabled = true;
+
     if (sortingAlgorithm === 'bubble-sort') {
       bubbleSortStep();
     } else if (sortingAlgorithm === 'insertion-sort') {
@@ -84,6 +85,8 @@ function draw() {
     } else if (sortingAlgorithm === 'merge-sort') {
       mergeSortStep();
     }
+  } else {
+    numValuesSlider.elt.disabled = false;
   }
 }
 
@@ -118,6 +121,14 @@ function startSorting() {
 }
 
 
+
+
+
+/* coloring rule : in each iteration color the bar that is correctly sorted in blue, other ones in green
+this works correctly for insertion sort and bubble sort and quick sort, because in each iteration a bar is guarenteed
+to be in its correct position, for merge sort this doesnt exactly work and i have exactly zero clue what is going on
+
+*/
 
 
 function bubbleSortStep() {
@@ -167,7 +178,7 @@ function insertionSortStep() {
 this function is different from the other ones because of how merge sort works,
 because steps in merge sort are sorting steps for sub arrays of the original array and not
 modifications of the original array itself ( not until the end ), hence the need for 
-pdateMainArray() to keep updating the original array for the animation
+updateMainArray() to keep updating the original array for the animation
 */
 
 

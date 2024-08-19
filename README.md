@@ -6,4 +6,4 @@ Visualizing famous sorting algorithms with p5.js, currently there are four algor
 ## Screenshots:
 ![pic1](./readmeassets/screen1.png)
 ![pic2](./readmeassets/screen2.png)
-![pic3](./readmeassets/screen3.png)
+
